@@ -57,6 +57,7 @@ public class TraceController {
     }
     String[] textoSeparado = resp.split("& &");
     resp = (textoSeparado[1].replaceAll("Esgotado o tempo limite do pedido.", "null"));
+    System.out.println(resp);
     return resp;
   }
 }
