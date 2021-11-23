@@ -69,11 +69,6 @@ public class UserServiceImp implements UserService {
     return userRepo.save(user);
   }
 
-  @Transactional
-  public void editarRouterUsuario(Usuario user) {
-    userRepo.save(user);
-  }
-
   @PreAuthorize("hasRole('ADMIN')")
   public void deleteUsuario(long idUser) {
     userRepo.deleteById(idUser);

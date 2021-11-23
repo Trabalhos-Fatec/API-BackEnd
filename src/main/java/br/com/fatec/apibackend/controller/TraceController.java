@@ -40,7 +40,7 @@ public class TraceController {
   public void tracerouter(@PathVariable String IP, @RequestBody Usuario usuario) {
     List<Usuario> user = userRepo.findByDadosEmailEmail(usuario.getEmail(0));
     user.get(0).setTraceRouter(runSystemCommand("tracepath " + IP));
-    userServ.editarRouterUsuario(user.get(0));
+    userRepo.save(user.get(0));
   }
 
   public static String runSystemCommand(String command) {
