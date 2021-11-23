@@ -34,6 +34,7 @@ public class LoginController {
     Authentication auth =
         new UsernamePasswordAuthenticationToken(login.getUsername(), login.getPassword());
     auth = authManager.authenticate(auth);
+    System.out.println(usuario.getAutorizacaos().indent(0));
     login.setPassword(null);
     login.setToken(JwtUtils.generateToken(auth));
     return login;
