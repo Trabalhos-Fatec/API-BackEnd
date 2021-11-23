@@ -57,8 +57,8 @@ public class TraceController {
     } catch (Exception e) {
       System.out.println(e);
     }
-    String[] textoSeparado = resp.split("& &");
-    resp = (textoSeparado[1].replaceAll("Esgotado o tempo limite do pedido.", "null"));
+    // String[] textoSeparado = resp.split("& &");
+    // resp = (textoSeparado[1].replaceAll("Esgotado o tempo limite do pedido.", "null"));
     System.out.println(resp + "Bruna FAMINTA");
     return resp;
   }
