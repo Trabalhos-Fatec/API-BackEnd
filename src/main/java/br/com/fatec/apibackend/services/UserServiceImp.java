@@ -74,6 +74,8 @@ public class UserServiceImp implements UserService {
     userRepo.deleteById(idUser);
   }
 
+
+  @PreAuthorize("hasRole('ADMIN')")
   public List<Usuario> listaUsuarios() {
     return userRepo.findAll();
   }
