@@ -58,7 +58,6 @@ public class TraceController {
     }
     resp = (resp.replaceAll("\\s+", " "));
     resp = (resp.replaceAll("no reply", "null"));
-    resp = (resp.replaceAll("???", "no trace"));
     System.out.println(resp);
     return resp;
   }
