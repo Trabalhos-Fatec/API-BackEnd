@@ -44,11 +44,11 @@ public class TraceController {
   }
 
   public static String runSystemCommand(String command) {
-    System.out.println(command);
     String s = "";
     String resp = "";
     try {
       Process p = Runtime.getRuntime().exec(command);
+      System.out.println("BRUNA GOSTOSA");
       BufferedReader inputStream = new BufferedReader(new InputStreamReader(p.getInputStream()));
       while ((s = inputStream.readLine()) != null) {
         resp += (s + " &");
