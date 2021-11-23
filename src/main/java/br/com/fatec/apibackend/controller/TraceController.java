@@ -56,9 +56,10 @@ public class TraceController {
     } catch (Exception e) {
       System.out.println(e);
     }
-    System.out.println(resp);
     resp = (resp.replaceAll("\\s+", " "));
     resp = (resp.replaceAll("no reply", "null"));
+    resp = (resp.replaceAll("???", "no trace"));
+    System.out.println(resp);
     return resp;
   }
 
