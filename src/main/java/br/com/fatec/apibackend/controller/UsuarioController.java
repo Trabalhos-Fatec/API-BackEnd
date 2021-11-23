@@ -25,7 +25,7 @@ public class UsuarioController {
   @Autowired
   public UserService userServ;
 
-  @JsonView(ViewUsuario.UsuarioView.class)
+  @JsonView(ViewUsuario.UsuarioCompletoView.class)
   @PostMapping()
   public ResponseEntity<Usuario> cadastrarUser(@RequestBody Usuario usuario) {
     return ResponseEntity.ok(userServ.cadastroUsuario(usuario));
