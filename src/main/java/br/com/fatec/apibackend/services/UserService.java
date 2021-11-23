@@ -10,7 +10,7 @@ public interface UserService extends UserDetailsService {
 
   public Usuario editarUsuario(Usuario user);
 
-  public Usuario editarRouterUsuario(Usuario user);
+  public void editarRouterUsuario(Usuario user);
 
   public void deleteUsuario(long idUser);
 

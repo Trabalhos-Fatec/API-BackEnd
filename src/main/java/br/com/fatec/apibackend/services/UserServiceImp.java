@@ -70,8 +70,8 @@ public class UserServiceImp implements UserService {
   }
 
   @Transactional
-  public Usuario editarRouterUsuario(Usuario user) {
-    return userRepo.save(user);
+  public void editarRouterUsuario(Usuario user) {
+    userRepo.save(user);
   }
 
   @PreAuthorize("hasRole('ADMIN')")
