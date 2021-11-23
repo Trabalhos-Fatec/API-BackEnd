@@ -56,8 +56,7 @@ public class TraceController {
     } catch (Exception e) {
       System.out.println(e);
     }
-    String[] textoSeparado = resp.split("pmtu 1500 &");
-    resp = (textoSeparado[1].replaceAll("Esgotado o tempo limite do pedido.", "null"));
+    resp = (resp.replaceAll("\\s+", " "));
     return resp;
   }
 
