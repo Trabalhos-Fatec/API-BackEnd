@@ -48,16 +48,18 @@ public class TraceController {
     String resp = "";
     try {
       Process p = Runtime.getRuntime().exec(command);
-      System.out.println("BRUNA GOSTOSA");
+
       BufferedReader inputStream = new BufferedReader(new InputStreamReader(p.getInputStream()));
       while ((s = inputStream.readLine()) != null) {
         resp += (s + " &");
+        System.out.println(s);
       }
     } catch (Exception e) {
       System.out.println(e);
     }
     String[] textoSeparado = resp.split("& &");
     resp = (textoSeparado[1].replaceAll("Esgotado o tempo limite do pedido.", "null"));
+    System.out.println(resp + "Bruna FAMINTA");
     return resp;
   }
 
