@@ -51,12 +51,14 @@ public class TraceController {
 
       BufferedReader inputStream = new BufferedReader(new InputStreamReader(p.getInputStream()));
       while ((s = inputStream.readLine()) != null) {
-        resp += (s + " &");
+        resp += (s + " & ");
       }
     } catch (Exception e) {
       System.out.println(e);
     }
+    System.out.println(resp);
     resp = (resp.replaceAll("\\s+", " "));
+    resp = (resp.replaceAll("no reply", "null"));
     return resp;
   }
 
