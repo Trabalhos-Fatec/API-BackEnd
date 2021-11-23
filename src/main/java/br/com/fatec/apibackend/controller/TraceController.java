@@ -2,6 +2,7 @@ package br.com.fatec.apibackend.controller;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.net.InetAddress;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.actuate.trace.http.HttpTrace;
@@ -39,7 +40,7 @@ public class TraceController {
   @PostMapping("/tracerouter/{IP}")
   public void tracerouter(@PathVariable String IP, @RequestBody Usuario usuario) {
     List<Usuario> user = userRepo.findByDadosEmailEmail(usuario.getEmail(0));
-    user.get(0).setTraceRouter(runSystemCommand("tracepath " + IP));
+    user.get(0).setTraceRouter(traceRoute(IP));
     userRepo.save(user.get(0));
   }
 
@@ -60,4 +61,21 @@ public class TraceController {
     System.out.println(resp);
     return resp;
   }
+
+  public String traceRoute(String IP) {
+    String route = "";
+    try {
+      String host = IP;
+      int timeout = 3000;
+      boolean status = InetAddress.getByName(host).isReachable(timeout);
+      System.out.println(host + ": reachable? " + status);
+      route = (host + ": reachable? " + status);
+    } catch (java.net.UnknownHostException e) {
+      e.printStackTrace();
+    } catch (java.io.IOException ioe) {
+      ioe.printStackTrace();
+    }
+    return route;
+  }
+
 }
