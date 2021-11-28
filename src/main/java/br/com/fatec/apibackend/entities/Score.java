@@ -20,6 +20,7 @@ import lombok.Setter;
 public class Score {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
   @OneToOne(fetch = FetchType.LAZY, mappedBy = "score")
   private Usuario usuario;
