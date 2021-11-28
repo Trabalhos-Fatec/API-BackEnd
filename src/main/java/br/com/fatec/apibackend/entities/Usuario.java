@@ -72,6 +72,10 @@ public class Usuario {
   @Column(name = "usuario_mouse", length = 10485760)
   private String mouse;
 
+  @JsonView(ViewUsuario.UsuarioCompletoView.class)
+  @Column(name = "usuario_score", length = 10485760)
+  private Score score;
+
   public String getEmail(int i) {
     return this.dados.getEmail().get(i).getEmail();
   }
