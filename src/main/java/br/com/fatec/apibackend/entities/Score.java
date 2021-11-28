@@ -1,6 +1,7 @@
 package br.com.fatec.apibackend.entities;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,11 +16,13 @@ import lombok.Setter;
 
 @Getter
 @Setter
+@Entity
 @NoArgsConstructor
 @Table(name = "score")
 public class Score {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @JsonView(ViewUsuario.UsuarioCompletoView.class)
   private Long id;
 
   @OneToOne(fetch = FetchType.LAZY, mappedBy = "score")
