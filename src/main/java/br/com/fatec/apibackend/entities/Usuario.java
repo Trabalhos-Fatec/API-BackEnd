@@ -73,7 +73,7 @@ public class Usuario {
   private String mouse;
 
   @JsonView(ViewUsuario.UsuarioCompletoView.class)
-  @Column(name = "usuario_score", length = 10485760)
+  @Column(name = "usuario_score")
   private Score score;
 
   public String getEmail(int i) {
