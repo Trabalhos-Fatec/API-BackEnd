@@ -74,7 +74,7 @@ public class Usuario {
 
   @JsonView(ViewUsuario.UsuarioCompletoView.class)
   @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-  @Column(name = "usuario_score")
+  @JoinColumn(name = "usuario_score")
   private Score score;
 
   public String getEmail(int i) {
