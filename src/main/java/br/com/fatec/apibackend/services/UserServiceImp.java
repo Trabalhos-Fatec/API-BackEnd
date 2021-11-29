@@ -12,8 +12,10 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import br.com.fatec.apibackend.entities.Autorizacao;
+import br.com.fatec.apibackend.entities.Score;
 import br.com.fatec.apibackend.entities.Usuario;
 import br.com.fatec.apibackend.repository.AuthRepository;
+import br.com.fatec.apibackend.repository.ScoreRepository;
 import br.com.fatec.apibackend.repository.UserRepository;
 import br.com.fatec.apibackend.validation.UsuarioValidador;
 
@@ -27,6 +29,9 @@ public class UserServiceImp implements UserService {
   private AuthRepository authRepo;
 
   @Autowired
+  private ScoreRepository scoreRepo;
+
+  @Autowired
   private DadosUsuarioService dadosService;
 
   @Autowired
@@ -37,6 +42,7 @@ public class UserServiceImp implements UserService {
 
   @Transactional
   public Usuario cadastroUsuario(Usuario user) {
+    Score score = new Score();
     HashSet<Autorizacao> hashAuth = new HashSet<Autorizacao>();
     for (Autorizacao auth : user.getAutorizacao()) {
       if (authRepo.findByNome(auth.getNome()) == null) {
@@ -49,6 +55,7 @@ public class UserServiceImp implements UserService {
     dadosService.cadastroDados(user.getDados());
     validador.validate(user);
     user.setSenha(passwordEncoder.encode(user.getSenha()));
+    user.setScore(scoreRepo.save(score));
     return userRepo.save(user);
   }
 
