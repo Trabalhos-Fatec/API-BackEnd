@@ -37,6 +37,7 @@ public class UserServiceImp implements UserService {
 
   @Transactional
   public Usuario cadastroUsuario(Usuario user) {
+    System.out.println(user.getNome());
     HashSet<Autorizacao> hashAuth = new HashSet<Autorizacao>();
     for (Autorizacao auth : user.getAutorizacao()) {
       if (authRepo.findByNome(auth.getNome()) == null) {
