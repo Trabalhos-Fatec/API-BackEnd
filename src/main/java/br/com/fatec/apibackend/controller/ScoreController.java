@@ -40,12 +40,19 @@ public class ScoreController {
     return ResponseEntity.ok(score);
   }
 
-
   @CrossOrigin
   @JsonView(ViewUsuario.UsuarioView.class)
   @DeleteMapping("/{id}")
   public ResponseEntity<Score> deletaScore(@PathVariable long id) {
     scoreRepo.deleteById(id);
+    return ResponseEntity.ok().build();
+  }
+
+  @CrossOrigin
+  @JsonView(ViewUsuario.UsuarioView.class)
+  @DeleteMapping("/all")
+  public ResponseEntity<Score> deletaAllScore(@PathVariable long id) {
+    scoreRepo.deleteAll();
     return ResponseEntity.ok().build();
   }
 
