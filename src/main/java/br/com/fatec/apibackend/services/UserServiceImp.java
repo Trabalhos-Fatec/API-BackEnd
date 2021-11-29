@@ -48,7 +48,7 @@ public class UserServiceImp implements UserService {
     }
     user.setAutorizacao(hashAuth);
     dadosService.cadastroDados(user.getDados());
-    validador.validate(user);
+    // validador.validate(user);
     user.setSenha(passwordEncoder.encode(user.getSenha()));
     return userRepo.save(user);
   }
