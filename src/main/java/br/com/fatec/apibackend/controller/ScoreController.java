@@ -2,6 +2,7 @@ package br.com.fatec.apibackend.controller;
 
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,7 +29,7 @@ public class ScoreController {
 
   @JsonView(ViewUsuario.UsuarioView.class)
   @RequestMapping("/{id}")
-  public void cadastra(@PathVariable long id, @RequestBody String cluster,
+  public ResponseEntity<Score> cadastra(@PathVariable long id, @RequestBody String cluster,
       @RequestBody String fingerPrint, @RequestBody String traceRouter) {
     Score score = new Score();
     score.setCluster(Integer.parseInt(cluster));
@@ -37,12 +38,14 @@ public class ScoreController {
     Optional<Usuario> user = userRepo.findById(id);
     score.setUsuario(user.get());
     scoreRepo.save(score);
+    return ResponseEntity.ok(score);
   }
 
   @JsonView(ViewUsuario.UsuarioView.class)
   @DeleteMapping("/{id}")
-  public void deletaScore(@PathVariable long id) {
+  public ResponseEntity<Score> deletaScore(@PathVariable long id) {
     scoreRepo.deleteById(id);
+    return ResponseEntity.ok().build();
   }
 
 }
