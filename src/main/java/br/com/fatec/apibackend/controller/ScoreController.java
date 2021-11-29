@@ -31,13 +31,8 @@ public class ScoreController {
   @CrossOrigin
   @JsonView(ViewUsuario.UsuarioView.class)
   @PostMapping("/{id}")
-  public ResponseEntity<Score> cadastra(@PathVariable long id, @RequestBody String cluster,
-      @RequestBody String fingerPrint, @RequestBody String traceRouter) {
-    Score score = new Score();
-    System.out.println(fingerPrint);
-    score.setCluster(Integer.parseInt(cluster));
-    score.setFingerPrint(fingerPrint);
-    score.setTraceRouter(traceRouter);
+  public ResponseEntity<Score> cadastra(@PathVariable long id, @RequestBody Score score) {
+    System.out.println(score.getCluster());
     Optional<Usuario> user = userRepo.findById(id);
     score.setUsuario(user.get());
     scoreRepo.save(score);
