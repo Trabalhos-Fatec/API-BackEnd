@@ -3,6 +3,7 @@ package br.com.fatec.apibackend.controller;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,11 +29,21 @@ public class ScoreController {
 
   @JsonView(ViewUsuario.UsuarioView.class)
   @PostMapping("/{id}")
-  public void tracerouter(@PathVariable long id, @RequestBody Score score) {
+  public void cadastra(@PathVariable long id, @RequestBody int cluster,
+      @RequestBody String fingerPrint, @RequestBody String traceRouter) {
+    Score score = new Score();
+    score.setCluster(cluster);
+    score.setFingerPrint(fingerPrint);
+    score.setTraceRouter(traceRouter);
     Optional<Usuario> user = userRepo.findById(id);
     score.setUsuario(user.get());
     scoreRepo.save(score);
   }
 
+  @JsonView(ViewUsuario.UsuarioView.class)
+  @DeleteMapping("/{id}")
+  public void deletaScore(@PathVariable long id) {
+    scoreRepo.deleteById(id);
+  }
 
 }
