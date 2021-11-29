@@ -28,6 +28,8 @@ public class ScoreController {
   @Autowired
   private ScoreRepository scoreRepo;
 
+
+  @CrossOrigin
   @JsonView(ViewUsuario.UsuarioView.class)
   @PostMapping("/{id}")
   public ResponseEntity<Score> cadastra(@PathVariable long id, @RequestBody String cluster,
@@ -43,6 +45,7 @@ public class ScoreController {
     return ResponseEntity.ok(score);
   }
 
+  @CrossOrigin
   @JsonView(ViewUsuario.UsuarioView.class)
   @DeleteMapping("/{id}")
   public ResponseEntity<Score> deletaScore(@PathVariable long id) {
