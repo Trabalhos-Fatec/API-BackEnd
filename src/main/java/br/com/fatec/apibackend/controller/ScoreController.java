@@ -28,7 +28,6 @@ public class ScoreController {
   @Autowired
   private ScoreRepository scoreRepo;
 
-
   @CrossOrigin
   @JsonView(ViewUsuario.UsuarioView.class)
   @PostMapping("/{id}")
