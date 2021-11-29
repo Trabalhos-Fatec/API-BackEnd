@@ -2,12 +2,13 @@ package br.com.fatec.apibackend.controller;
 
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.annotation.JsonView;
 import br.com.fatec.apibackend.entities.Score;
@@ -28,7 +29,9 @@ public class ScoreController {
   private ScoreRepository scoreRepo;
 
   @JsonView(ViewUsuario.UsuarioView.class)
-  @PostMapping("/{id}")
+  @RequestMapping(value = "/{id}", method = RequestMethod.POST,
+      consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE,
+      produces = {MediaType.APPLICATION_ATOM_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
   public void cadastra(@PathVariable long id, @RequestBody int cluster,
       @RequestBody String fingerPrint, @RequestBody String traceRouter) {
     Score score = new Score();
