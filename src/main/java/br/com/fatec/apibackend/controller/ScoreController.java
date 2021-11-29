@@ -1,6 +1,5 @@
 package br.com.fatec.apibackend.controller;
 
-import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -33,11 +32,14 @@ public class ScoreController {
   @PostMapping("/{id}")
   public ResponseEntity<Score> cadastra(@PathVariable long id, @RequestBody Score score) {
     System.out.println(score.getCluster());
-    Optional<Usuario> user = userRepo.findById(id);
-    score.setUsuario(user.get());
-    scoreRepo.save(score);
+    Usuario user = userRepo.findById(id).get();
+    score.setUsuario(user);
+    Score scoreNew = scoreRepo.save(score);
+    user.setScore(scoreNew);
+    userRepo.save(user);
     return ResponseEntity.ok(score);
   }
+
 
   @CrossOrigin
   @JsonView(ViewUsuario.UsuarioView.class)

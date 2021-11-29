@@ -66,7 +66,6 @@ public class UserServiceImp implements UserService {
     }
     user.setAutorizacao(hashAuth);
     dadosService.cadastroDados(user.getDados());
-
     return userRepo.save(user);
   }
 
