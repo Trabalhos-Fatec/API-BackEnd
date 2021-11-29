@@ -34,7 +34,7 @@ public class Score {
 
   @JsonView(ViewUsuario.UsuarioCompletoView.class)
   @Column(name = "cluster")
-  private int cluster;
+  private String cluster;
 
   @JsonView(ViewUsuario.UsuarioCompletoView.class)
   @Column(name = "finger_print", length = 10485760)
